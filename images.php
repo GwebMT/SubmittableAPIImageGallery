@@ -1,10 +1,10 @@
 <?php
 
 //ENTER YOUR SUBMITTABLE ACCOUNT EMAIL
-$user = "herr.gweb@gmail.com";
+$user = "youremail@yourhost.com";
 
 //ENTER YOUR SUBMITTABLE ACCOUNT API ACCESS TOKEN 
-$password = "62dba52b3e914dd296ce53b432c081ac";
+$password = "your Submittable API Token";
 
 //*****************************
 //DO NOT CHANGE BELOW THIS LINE
