@@ -35,8 +35,7 @@ $data = file_get_contents($url, false, $context);
 $json = json_decode($data, true);
 $total_items = $json['total_items'];
 $items_per_page = $json['items_per_page'];
-$total_pages = $total_items / $items_per_page;
-$total_pages = ceil($total_pages);
+$total_pages = ceil($total_items / $items_per_page);
 
 echo '<h2 style="text-align:center">Submittable Image Gallery</h2>';
 echo '<form action="'.$_SERVER['PHP_SELF'].'" method="get">';
@@ -156,52 +155,52 @@ for ($x=1; $x<=$total_pages; $x++)
 }
 
 echo '</select>&nbsp;&nbsp;&nbsp;<input name="btnSubmit" type="submit" value="Get Images" />';
-echo '</div>';
+echo '</div></div>';
 echo '<br style="clear:both"/>';
 
 
 $strSubmissions = '<div style="width:100%">';
 foreach($json as $key => $value) {
     if (is_array($value)){
-		foreach ($value as $each_member) {
+	foreach ($value as $each_member) {
     		while (list($key1, $value1) = each ($each_member)) {				
-				switch ($key1) {
-					case "files":
-						foreach($value1 as $key2 => $value2) {
-							foreach($value2 as $key3 => $value3) {
-								switch ($y) {
-									case 1:
-										$file_name = $value3;
-									break;
-									case 2:
-										$file_extension = $value3;
-									break;
-									case 5:
-										$file_url = $value3;
-										if ($file_extension == "jpg" || $file_extension == "png" || $file_extension == "gif") {
-											$strSubmissions .= '<div style="width:25%;float:left;text-align:center;margin-top:10px;margin-bottom:10px">';
-											$strSubmissions .= '<a href="thumbnail.php?user='.urlencode($user).'&password='.urlencode($password).'&url='.urlencode($file_url).'&file_extension='.urlencode($file_extension).'" target="_blank">';
-											$strSubmissions .= '<img src="thumbnail.php?user='.urlencode($user).'&password='.urlencode($password).'&url='.urlencode($file_url).'&desired_width='.urlencode($desired_width).'&file_extension='.urlencode($file_extension).'" border="0" />';
-											$strSubmissions .= '</a><br />';
-											$strSubmissions .= '<span style="font-size: 0.75em">'.$file_name.'</span>';
-											$strSubmissions .= '</div>';
-											$rownum++;
-											if($rownum % 4 == 0) {
-												$strSubmissions .= '<br style="clear:both"/>';
-											}
+			switch ($key1) {
+				case "files":
+					foreach($value1 as $key2 => $value2) {
+						foreach($value2 as $key3 => $value3) {
+							switch ($y) {
+								case 1:
+									$file_name = $value3;
+								break;
+								case 2:
+									$file_extension = $value3;
+								break;
+								case 5:
+									$file_url = $value3;
+									if ($file_extension == "jpg" || $file_extension == "png" || $file_extension == "gif") {
+										$strSubmissions .= '<div style="width:25%;float:left;text-align:center;margin-top:10px;margin-bottom:10px">';
+										$strSubmissions .= '<a href="thumbnail.php?user='.urlencode($user).'&password='.urlencode($password).'&url='.urlencode($file_url).'&file_extension='.urlencode($file_extension).'" title="'.$file_name.'" target="_blank">';
+										$strSubmissions .= '<img src="thumbnail.php?user='.urlencode($user).'&password='.urlencode($password).'&url='.urlencode($file_url).'&desired_width='.urlencode($desired_width).'&file_extension='.urlencode($file_extension).'" border="0" />';
+										$strSubmissions .= '</a><br />';
+										$strSubmissions .= '<span style="font-size: 0.75em">'.$file_name.'</span>';
+										$strSubmissions .= '</div>';
+										$rownum++;
+										if($rownum % 4 == 0) {
+											$strSubmissions .= '<br style="clear:both"/>';
 										}
-									break;
-								}
-								if($y % 6 == 0) {
-									$y = 0;
-								}
-								$y++;
+									}
+								break;
 							}
+							if($y % 6 == 0) {
+								$y = 0;
+							}
+							$y++;
 						}
-					break;
 				}
+					break;
 			}
 		}
+	}
     }
 }
 
