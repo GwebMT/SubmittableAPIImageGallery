@@ -22,9 +22,9 @@ $num_pages = $_GET['num_pages'];
 $subs_per_page = $_GET['subs_per_page'];
 
 if(isset($_GET['sort_by']) && isset($_GET['sort_dir']) && isset($_GET['subs_per_page']) && isset($_GET['num_pages'])){
-	$url = 'https://api-stage.submittable.com/v1/submissions?sort='.$_GET['sort_by'].'&dir='.$_GET['sort_dir'].'&count='.$_GET['subs_per_page'].'&page='.$_GET['num_pages'];
+	$url = 'https://api.submittable.com/v1/submissions?sort='.$_GET['sort_by'].'&dir='.$_GET['sort_dir'].'&count='.$_GET['subs_per_page'].'&page='.$_GET['num_pages'];
 }else{
-	$url = 'https://api-stage.submittable.com/v1/submissions';
+	$url = 'https://api.submittable.com/v1/submissions';
 }
 
 $context = stream_context_create(array('http' => array('header'  => "Authorization: Basic " . base64_encode("$user:$password"))));
